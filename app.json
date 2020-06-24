@@ -1,0 +1,22 @@
+{
+  "name": "app-organizador",
+  "displayName": "app-organizador",
+  "expo": {
+    "name": "app-organizador",
+    "slug": "expo-template-bare",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "splash": {
+      "image": "./assets/images/blueticket-splash-screen.png",
+      "backgroundColor": "#0067AF",
+      "resizeMode": "contain"
+    }
+  }
+}
