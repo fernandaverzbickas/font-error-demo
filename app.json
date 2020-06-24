@@ -2,9 +2,12 @@
   "name": "app-organizador",
   "displayName": "app-organizador",
   "expo": {
-    "name": "app-organizador",
-    "slug": "expo-template-bare",
+    "name": "Blueticket Organizador",
+    "slug": "app-organizador",
+    "privacy": "unlisted",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon":"./assets/appStoreIcon.png",
     "platforms": [
       "ios",
       "android",
@@ -17,6 +20,10 @@
       "image": "./assets/images/blueticket-splash-screen.png",
       "backgroundColor": "#0067AF",
       "resizeMode": "contain"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.blueticket.organizador"
     }
   }
 }

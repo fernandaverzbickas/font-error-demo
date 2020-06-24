@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, View, Text, StyleSheet } from 'react-native'
+import { Modal, View, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native'
 import { Colors, Typography } from '../../styles'
 import { ButtonLightLink } from './Buttons'
 import {ButtonLightPrimary} from './Buttons'
@@ -24,12 +24,12 @@ const CustomModal: React.FC<Props> = (props) => {
       transparent={true}
       visible={props.visible}
      >
+       
       <View style={styles.modalSet}>
 
         <View style={styles.modalOverlay}></View>
 
-        <View style={styles.modalContainer}>
-
+        <KeyboardAvoidingView behavior={Platform.OS == "ios" ? 'padding' : undefined} enabled style={styles.modalContainer} keyboardVerticalOffset={24}>
           <View style={styles.modalHeader}>
             <Text style={styles.titleHeader}>{props.title}</Text>
             <ButtonLightLink onPress={props.onModalClose} color={Colors.BTBLUE} iconName="times-solid" iconColor={Colors.GREY100}/>
@@ -41,9 +41,9 @@ const CustomModal: React.FC<Props> = (props) => {
             : <Text style={styles.subtitleHeader}>{props.subtitle}</Text>
           }
 
-          <View style={styles.modalContent}>
+            <View style={styles.modalContent} >
             {props.content}
-          </View>
+            </View>
 
           {
             props.hideAction
@@ -53,9 +53,8 @@ const CustomModal: React.FC<Props> = (props) => {
               </View>
           }
 
+          </KeyboardAvoidingView>
           
-
-        </View>
       </View>
       </Modal>
   )
@@ -74,8 +73,8 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-end',
     padding: 24,
     width: '100%',
     backgroundColor: Colors.LIGHT,
@@ -111,7 +110,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 18,
     color: Colors.GREY80,
-    marginTop: 4
+    marginTop: 4,
+    textAlign: "left"
   },
   modalContent: {
     marginVertical: 32,
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
   },
   modalActions: {
     flex: 1,
-    width: '100%'
+    width: '100%',
+    paddingBottom: Platform.OS ? 24 : 0,
   }
 })
 
