@@ -1,4 +1,4 @@
-import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, } from '../actions/types'
+import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE, USER_LOGIN_INITIAL_STATE } from '../actions/types'
 
 interface Login {
   loading: Boolean,
@@ -39,6 +39,13 @@ const login = (state = initialState, action : IAction) => {
         loading: false,
         token: '',
         error: action.payload
+      }
+    case USER_LOGIN_INITIAL_STATE: 
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        token: ''
       }
     default: 
       return state

@@ -5,9 +5,11 @@ import {
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SENT,
   FORGOT_PASSWORD_FAILED,
-  FORGOT_PASSWORD_INITIAL
+  FORGOT_PASSWORD_INITIAL,
+  USER_LOGIN_INITIAL_STATE
 } from './types'
 import api from '../../../api/api'
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 // Actions to log user in
@@ -32,17 +34,40 @@ const userLoginFailure = (error: string) => {
   }
 }
 
+const userLogout = () => {
+  return {
+    type: USER_LOGIN_INITIAL_STATE
+  }
+}
+
+const storeData = async (value : string) => {
+  try {
+    await AsyncStorage.setItem('@login_token', value)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export const loginUser = (params : {}) => {
   return async function (dispatch : any) {
     dispatch(userLoginRequest())
     await api.post('auth/loginpos', params)
       .then((response) => {
         const token = response.data.access_token
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+        storeData(token)
         dispatch(userLoginSuccess(token))
       })
       .catch((error) => {
         dispatch(userLoginFailure('Dados de acesso inválidos, tente novamente.'))
       })
+  }
+}
+
+export const logoutUser = () => {
+  return async function (dispatch: any) {
+    dispatch(userLogout())
+    storeData('')
   }
 }
 

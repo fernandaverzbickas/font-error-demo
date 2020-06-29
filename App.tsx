@@ -8,10 +8,11 @@ import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { AppLoading } from 'expo';
 
-export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false)
 
-  const loadFonts = async () => {
+export default function App() {
+  const [resourcesLoaded, setResourcesLoaded] = useState(false)
+
+  const loadResources = async () => {
     try {
       await SplashScreen.preventAutoHideAsync()
       await Font.loadAsync({
@@ -21,7 +22,7 @@ export default function App() {
          'LineAwesome': require('./assets/fonts/line-awesome.ttf')
       })
       if (Font.isLoaded('CircularStd') && Font.isLoaded('CircularStdBold')  && Font.isLoaded('CircularStdMedium')) {
-        setFontsLoaded(true)
+        setResourcesLoaded(true)
         await SplashScreen.hideAsync()
       }
     } catch (err) {
@@ -30,10 +31,10 @@ export default function App() {
   }
 
   useEffect(() => {
-    loadFonts()
+    loadResources()
   }, [])
 
-  if (!fontsLoaded) return <AppLoading />
+  if (!resourcesLoaded) return <AppLoading />
   else {
     return (
       <Provider store={store}>

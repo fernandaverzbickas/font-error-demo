@@ -7,8 +7,7 @@ import {Colors, Typography} from '../styles/index'
 import Input from '../components/shared/Input'
 import {ButtonLightPrimary, ButtonLightLink} from '../components/shared/Buttons'
 import CustomModal from '../components/shared/Modal'
-import forgotPasswordStatus from '../redux/store/reducers/forgotPassword'
-import Icon from '../components/shared/Icon'
+import Icon from '../components/shared/Icons/Icon'
 
 
 const Login = ({navigation}: any) => {
@@ -29,7 +28,7 @@ const Login = ({navigation}: any) => {
     if (pressedButton) {
       if (login.token && !login.loading ) {
         setLoginError(login.error)
-        navigation.navigate('Home')
+        navigation.navigate('Events')
       } else if (login.error) {
         setLoginError(login.error)
       }
@@ -111,7 +110,7 @@ const Login = ({navigation}: any) => {
           iconColor={Colors.GREY40}
           marginB={24}/>
           <Text style={styles.errorMessage}>{loginError}</Text>
-        <ButtonLightPrimary text="Continuar" height={56} color={Colors.BTBLUE} onPress={getAccess} disabled={!password.length || !username.length} marginB={38}/>
+        <ButtonLightPrimary text="Continuar" height={56} color={Colors.BTBLUE} onPress={getAccess} disabled={password.length < 6 || !username.length} marginB={38}/>
         <ButtonLightLink onPress={toggleModal} text="Esqueci minha senha" color={Colors.BTBLUE} align="center"/>
         <CustomModal
          visible={modal}

@@ -1,9 +1,24 @@
 import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 const api = axios.create({
   baseURL: 'https://soulapi.dev.btservers.com.br/api',
   timeout: 60000
 })
+
+const getStorageData = async () => {
+  try {
+    const cachedToken = await AsyncStorage.getItem('@login_token')
+    if(cachedToken !== null) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${cachedToken}`
+    }
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+getStorageData()
 
 api.interceptors.response.use((response: any) => {
   getError(response)

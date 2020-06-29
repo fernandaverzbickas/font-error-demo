@@ -1,6 +1,6 @@
 import React from 'react'
 import { createIconSet } from '@expo/vector-icons'
-import { icons } from './LineAwesomeIcons'
+import { icons } from '../LineAwesomeIcons'
 
 export interface Props {
   name?: string,
