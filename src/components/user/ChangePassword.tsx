@@ -4,7 +4,7 @@ import { Colors, Typography } from '../../styles';
 import Input from '../shared/Input'
 import { ButtonLightPrimary } from '../shared/Buttons';
 import {useDispatch, useSelector} from 'react-redux'
-import {updatePassword, updatePasswordInitialState} from '../../redux/store/actions/updatePassword'
+import {updatePassword, updatePasswordInitialState} from '../../redux/actions/updatePassword'
 import { RootState } from '../../redux/store/store'
 
 const ChangePassword = ({navigation}:any) => {

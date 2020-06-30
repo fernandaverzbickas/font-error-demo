@@ -8,7 +8,7 @@ import {
   FORGOT_PASSWORD_INITIAL,
   USER_LOGIN_INITIAL_STATE
 } from './types'
-import api from '../../../api/api'
+import api from '../../api/api'
 import AsyncStorage from '@react-native-community/async-storage';
 
 

@@ -1,5 +1,5 @@
 import {VALIDATED_TOKEN, EXPIRED_TOKEN } from './types' 
-import api from '../../../api/api'
+import api from '../../api/api'
 
 const tokenValidationSuccess = (userInfo : object) => {
   return {

@@ -36,9 +36,6 @@ const User = () => {
     return initials.toUpperCase()
   }
 
-  useEffect(() => {
-  }, [userInfo])
-
   const mainHeaderComponent = ({scene, previous, navigation} : any) => {
     if (userInfo && userInfo.user && userInfo.user.nome) {
       loadedInfo = (

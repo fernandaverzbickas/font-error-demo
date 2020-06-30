@@ -3,7 +3,7 @@ import { NavigationContainer, NavigationContainerRef } from '@react-navigation/n
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../redux/store/store'
-import {tokenValidation} from '../redux/store/actions/token'
+import {tokenValidation} from '../redux/actions/token'
 import AsyncStorage from '@react-native-community/async-storage';
 
 import LoginScreen from '../screens/LoginScreen'

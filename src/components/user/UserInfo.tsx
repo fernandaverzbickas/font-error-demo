@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, FlatList, TouchableOpacity, Linking} from 'react
 import { Colors, Typography } from '../../styles';
 import Icon from '../shared/Icons/Icon';
 import {useDispatch} from 'react-redux'
-import { logoutUser } from '../../redux/store/actions/login';
+import { logoutUser } from '../../redux/actions/login';
 import * as RootNavigation from '../../navigation/RootNavigation'
 
 const UserInfo = ({navigation} : any) => {
