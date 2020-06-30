@@ -10,7 +10,7 @@ import CustomModal from '../components/shared/Modal'
 import Icon from '../components/shared/Icons/Icon'
 
 
-const Login = ({navigation}: any) => {
+const Login = ({navigation, route}: any) => {
   const [loginError, setLoginError] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -28,7 +28,7 @@ const Login = ({navigation}: any) => {
     if (pressedButton) {
       if (login.token && !login.loading ) {
         setLoginError(login.error)
-        navigation.navigate('Events')
+        navigation.navigate('Home', { screen: 'Events' });
       } else if (login.error) {
         setLoginError(login.error)
       }

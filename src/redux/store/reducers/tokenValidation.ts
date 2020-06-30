@@ -17,7 +17,7 @@ const initialState: Token = {
   userInfo: null
 } 
 
-const tokenValidation = (state = initialState, action : IAction) => {
+const userContent = (state = initialState, action : IAction) => {
   switch(action.type) {
     case VALIDATED_TOKEN:
       return {
@@ -39,4 +39,4 @@ const tokenValidation = (state = initialState, action : IAction) => {
   
 }
 
-export default tokenValidation
+export default userContent

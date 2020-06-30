@@ -3,14 +3,14 @@ import thunk from 'redux-thunk'
 
 import login from './reducers/login';
 import forgotPassword from './reducers/forgotPassword'
-import tokenValidation from './reducers/tokenValidation'
+import userContent from './reducers/tokenValidation'
 import updatePassword from './reducers/updatePassword'
 
 
 export const rootReducer = combineReducers({
   login,
   forgotPassword,
-  tokenValidation,
+  userContent,
   updatePassword
 })
 

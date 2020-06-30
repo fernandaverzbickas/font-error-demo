@@ -1,5 +1,5 @@
-import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import React, { useEffect } from 'react'
+import {StyleSheet, Text, View, ActivityIndicator} from 'react-native'
 import { createStackNavigator, StackNavigationOptions, StackHeaderProps } from '@react-navigation/stack';
 import UserInfo from '../components/user/UserInfo';
 import ChangePassword from '../components/user/ChangePassword'
@@ -13,7 +13,7 @@ const UserStack = createStackNavigator()
 
 
 const User = () => {
-  const userInfo = useSelector((state: RootState) => state.tokenValidation.userInfo)
+  const userInfo = useSelector((state: RootState) => state.userContent.userInfo)
   const headerOptions : StackNavigationOptions = {
     headerShown: true,
     headerTitle: '',
@@ -24,27 +24,42 @@ const User = () => {
     }
   }
 
+  let loadedInfo = (
+    <View style={{...styles.headerCard, justifyContent: 'center'}}>
+      <ActivityIndicator size="large" color={Colors.BTBLUE} />
+    </View>
+  )
+
   const getInitials = (name : string) => {
     let nameArr = name.split(' ')
     let initials = nameArr[0][0] + nameArr[nameArr.length - 1][0]
     return initials.toUpperCase()
   }
 
+  useEffect(() => {
+  }, [userInfo])
+
   const mainHeaderComponent = ({scene, previous, navigation} : any) => {
-      return (
-        <View style={styles.headerContainer}>
-          <Text style={{...styles.headerTitle}}>Conta</Text>
-          <View style={styles.headerCard}>
-            <View style={styles.nameAvatar}>
-              <Text style={styles.avatarInitials}>{getInitials(userInfo.user.nome)}</Text>
-            </View>
-            <View>
-              <Text style={styles.username}>{userInfo.user.nome}</Text>
-              <Text style={styles.userEmail}>{userInfo.user.email}</Text>  
-            </View>
+    if (userInfo && userInfo.user && userInfo.user.nome) {
+      loadedInfo = (
+        <View style={styles.headerCard}>
+        <View style={styles.nameAvatar}>
+            <Text style={styles.avatarInitials}>{getInitials(userInfo.user.nome)}</Text>
+          </View>
+          <View>
+            <Text style={styles.username}>{userInfo.user.nome}</Text>
+            <Text style={styles.userEmail}>{userInfo.user.email}</Text>  
           </View>
         </View>
       )
+    } 
+
+    return (
+      <View style={styles.headerContainer}>
+        <Text style={{...styles.headerTitle}}>Conta</Text>
+        {loadedInfo}
+      </View>
+    )
   }
 
   const passwordChangeHeader = ({scene, previous, navigation} : any) => {

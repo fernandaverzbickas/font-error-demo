@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector, useDispatch } from 'react-redux'
@@ -13,7 +13,8 @@ import * as RootNavigation from './RootNavigation'
 
 
 const Router = () => {
-  const tokenIsValid = useSelector((state: RootState) => state.tokenValidation)
+  const tokenIsValid = useSelector((state: RootState) => state.userContent)
+  const login = useSelector((state: RootState) => state.login)
   const [checkedToken, setCheckedTokenOnInit] = useState(false)
   const Stack = createStackNavigator()
   const dispatch = useDispatch()
@@ -24,18 +25,16 @@ const Router = () => {
     getStoreData()
     getTokenValidation()
 
-    const pingToMe = () => {
-      getTokenValidation()
-    }
-
-    const interval = setInterval(() => pingToMe(), 60000)
+    const interval = setInterval(() => getTokenValidation(), 60000)
     return () => {
       clearInterval(interval)
     }
-  }, []) 
+  }, [login.token]) 
 
   useEffect(() => {
-    if (tokenIsValid.error) RootNavigation.navigate({name: 'Login', params: {}})
+    if (tokenIsValid.error) {
+      RootNavigation.navigate({name: 'Login', params: {}})
+    }
   }, [tokenIsValid])
 
   const getTokenValidation = async () => {
