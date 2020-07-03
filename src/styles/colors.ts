@@ -8,8 +8,14 @@ export const ALERT = '#FFAA33' // yellow
 export const ATTENTION = '#FF5722' // orange
 export const ERROR = '#D33724'// red
 
+export const SUCCESS_TRANSPARENT = 'rgba(0, 166, 90, 0.12)'
+export const ACTIVE_TRANSPARENT = 'rgba(25, 118, 210, 0.12)'
+export const ALERT_TRANSPARENT = 'rgba(255, 170, 51, 0.12)'
+export const ATTENTION_TRANSPARENT = 'rgba(255, 87, 34, 0.12)'
+
 
 export const LIGHT = "#FFFF"
+export const LIGHTBLUE = '#E5E5E5'
 export const GREY100 = "#192B46"
 export const GREY80 = "#3C4B62"
 export const GREY60 = "#5E6B7E"

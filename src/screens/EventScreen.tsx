@@ -16,23 +16,15 @@ const Event = () => {
       fontSize: 28,
       lineHeight: 35,
       letterSpacing: -0.5,
-      top: -28
+      top: 13,
     },
+    headerTitleAlign: 'left',
     headerStyle: {
       backgroundColor: Colors.BTBLUE,
-      height: 209,
-    }
+      height: 127,
+      shadowOffset: {width: 0, height: 0}
+    },
   }
-
-  const mainHeaderComponent = ({scene, previous, navigation} : any) => {
-      return (
-        <View>
-          <Text>Events</Text>
-        </View>
-      )
-    } 
-
-
 
   return (
     <EventsStack.Navigator initialRouteName="User" mode="modal">
@@ -42,17 +34,6 @@ const Event = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
 });
 
 export default Event

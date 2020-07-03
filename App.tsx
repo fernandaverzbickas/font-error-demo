@@ -7,7 +7,8 @@ import Router from './src/navigation/Router'
 import * as Font from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { AppLoading } from 'expo';
-
+import moment from 'moment'
+import 'moment/locale/pt-br'
 
 export default function App() {
   const [resourcesLoaded, setResourcesLoaded] = useState(false)
@@ -32,6 +33,7 @@ export default function App() {
 
   useEffect(() => {
     loadResources()
+    moment().locale('pt-br')
   }, [])
 
   if (!resourcesLoaded) return <AppLoading />
