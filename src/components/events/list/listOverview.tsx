@@ -29,7 +29,7 @@ const EventsList = ({navigation}:any) => {
     refreshing={refreshing}
     keyExtractor={(item : any) => item.codigo.toString()}
     data={eventsList}
-    renderItem={(item: any) => (<EventPresentationCard event={item.item}/>)}
+    renderItem={(item: any) => (<EventPresentationCard event={item.item} navigation={navigation}/>)}
     />)
     : (<ActivityIndicator color={Colors.BTBLUE} size={64} style={{marginTop: '50%'}}/>)
 

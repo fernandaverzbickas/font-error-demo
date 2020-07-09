@@ -6,9 +6,10 @@ import Icon from '../../shared/Icons/Icon'
 import moment from 'moment'
 import Chip from '../../shared/Chip'
 import EventGraph from './eventPresentationGraph'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 
-const EventPresentationCard = ({event}:any) => {
+const EventPresentationCard = ({event, navigation}:any) => {
   let imageUrl = event.capa ? event.capa.url : 'https://s3.amazonaws.com/blueticket-cdn/images/imagens/compact/21420.jpg'
 
   const formatDate = (date : string) => {
@@ -48,8 +49,12 @@ const EventPresentationCard = ({event}:any) => {
     return visibility
   }
 
+  const openEventReport = () => {
+    navigation.navigate('EventReport', {event})
+  }
+
   return (
-    <View style={styles.listContainer}>
+    <TouchableOpacity style={styles.listContainer} onPress={openEventReport} activeOpacity={1}>
       <Image 
       style={styles.coverImage}
       borderRadius={4}
@@ -68,11 +73,11 @@ const EventPresentationCard = ({event}:any) => {
         <View style={{...styles.row, marginVertical: 4.5}}>
           <Chip backgroundColor={Colors.SUCCESS_TRANSPARENT} textColor={Colors.SUCCESS} size="small" text={`${event.total_pdvs_vinculados} PDVs`} iconName="circle-fullfiled"/>
           <View style={{minWidth: 10}}></View>
-          <Chip backgroundColor={eventVisibility().backgroundColor} textColor={eventVisibility().textColor} size="small" text={eventVisibility().text} iconName="circle-fullfiled"/>
+          <Chip backgroundColor={eventVisibility().backgroundColor} textColor={eventVisibility().textColor} size="small" text={eventVisibility().text} iconName="desktop-solid" iconSize={20}/>
         </View>
         <EventGraph eventCode={event.codigo}/>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

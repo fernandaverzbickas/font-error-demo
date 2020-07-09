@@ -10,6 +10,7 @@ export interface Props {
   textColor: string,
   size: 'x-small' | 'small' | 'medium' | 'large' | 'x-large',
   iconName?: string,
+  iconSize?: number
   iconImage?: string
 }
 
@@ -49,7 +50,7 @@ const Chip: React.FC<Props> = (props) => {
   let icon = () => {
     return props.iconName === 'circle-fullfiled' 
     ? <View style={styles.dot}></View>
-    : <Icon name={props.iconName} color={props.textColor} size={chipSize().fontSize} />
+    : <Icon name={props.iconName} color={props.textColor} size={props.iconSize || chipSize().fontSize} />
   }
 
   const styles = StyleSheet.create({
@@ -67,14 +68,14 @@ const Chip: React.FC<Props> = (props) => {
       lineHeight: chipSize().size,
       fontSize: chipSize().fontSize,
       color: props.textColor || Colors.ACTIVE,
-      fontFamily: Typography.CircularStd500
+      fontFamily: Typography.CircularStd500,
+      marginLeft: (props.iconImage || props.iconName) ? 6 : 0
     },
     dot: {
       height: chipSize().fontSize * 0.8,
       width: chipSize().fontSize * 0.8,
       borderRadius: chipSize().fontSize,
       backgroundColor: props.textColor || Colors.ACTIVE,
-      marginRight: 6
     }
   })
 

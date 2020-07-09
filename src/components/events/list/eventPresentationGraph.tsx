@@ -5,6 +5,7 @@ import api from '../../../api/api'
 import moment from 'moment'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../redux/store/store'
+import { addThousandSeparator, formatCurrency } from '../../../helpers/helpers'
 
 export interface Props {
   eventCode: string | number
@@ -46,18 +47,6 @@ const EventGraph: React.FC<Props> = (props) => {
             setGraphData({...graphData, loading: false, success: false, data: null, error: true})
           })
         }
-  }
-
-  const addThousandSeparator = (value: string | number) => {
-    if (!value) return null
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-  }
-
-  const formatCurrency = (value: string) => {
-    if (!value) value = '0'
-    const prefix = 'R$'
-    let number = addThousandSeparator(value.split('.')[0]) + ',' + value.split('.')[1]
-    return prefix + number
   }
 
   useEffect(() => {
@@ -106,7 +95,7 @@ const EventGraph: React.FC<Props> = (props) => {
       return (
         <View style={styles.graphContainerColumns}>
             <FlatList 
-              data={dailyData}
+              data={dailyData.reverse()}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item} : any) => graph(item)}
               style={styles.graphContainer}

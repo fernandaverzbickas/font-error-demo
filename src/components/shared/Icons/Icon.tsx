@@ -1,6 +1,7 @@
 import React from 'react'
 import { createIconSet } from '@expo/vector-icons'
 import { icons } from '../LineAwesomeIcons'
+import { Colors } from '../../../styles'
 
 export interface Props {
   name?: string,
@@ -27,7 +28,7 @@ const Icon: React.FC<Props> = (props) => {
   const glyphMap = glyphs
   const CustomIcon = createIconSet(glyphMap, 'LineAwesome', 'line-awesome.ttf');
   return (
-    <CustomIcon name={props.name || 'envelope'} size={props.size} color={props.color} />
+    <CustomIcon name={props.name || 'envelope'} size={props.size || 24} color={props.color || Colors.BTBLUE} />
   )
 }
 
