@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, Platform} from 'react-native'
-import { createStackNavigator, StackNavigationOptions, StackHeaderProps } from '@react-navigation/stack';
+import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import EventsList from '../components/events/list/listOverview'
 import { Colors, Typography } from '../styles';
 import EventIndex from '../components/events/details/eventIndex';
