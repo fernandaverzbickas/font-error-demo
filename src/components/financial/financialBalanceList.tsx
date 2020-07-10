@@ -5,7 +5,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from '../shared/Icons/Icon';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store/store';
-import { getOrganizerById } from '../../redux/actions/findOrganizerById';
 import { getFinancialBalanceList } from '../../redux/actions/financialBalanceList'
 import { formatCurrency } from '../../helpers/helpers';
 
@@ -27,7 +26,7 @@ const FinancialBalanceList = ({navigation} : any) => {
       <Text style={{...styles.td, flex: 3}}>{item.nome_conta}</Text>
       <Text style={{...styles.td, textAlign: 'right', flex: 2}}>{formatCurrency(item.valor_futuro.toString()).replace('R$', '')}</Text>
       <Text style={{...styles.td, textAlign: 'right', flex: 2}}>{formatCurrency(item.saldo_disponivel.toString()).replace('R$', '')}</Text>
-      <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('FinancialBalance')}>
+      <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('FinancialBalance', { accountId: item.codigo, token: item.token })}>
         <Icon name="file-invoice-dollar-solid" color={Colors.ACTIVE} size={24}/>
       </TouchableOpacity>
     </View>
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    height: 58,
+    minHeight: 58,
     borderBottomColor: Colors.GREY24,
     borderBottomWidth: 1,
     paddingHorizontal: 12,
