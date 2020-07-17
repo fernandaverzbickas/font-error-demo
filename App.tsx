@@ -1,47 +1,43 @@
-import 'react-native-gesture-handler';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Provider } from 'react-redux'
 
-import store from './src/redux/store/store'
-import Router from './src/navigation/Router'
-import * as Font from 'expo-font'
-import * as SplashScreen from 'expo-splash-screen'
 import { AppLoading } from 'expo';
-import moment from 'moment'
+import * as Font from 'expo-font'
 import 'moment/locale/pt-br'
+import { View, Text } from 'react-native';
+import Icon from './src/components/shared/Icons/Icon';
 
 export default function App() {
-  const [resourcesLoaded, setResourcesLoaded] = useState(false)
+  const [isReady, setReady] = useState(false);
 
-  const loadResources = async () => {
-    try {
-      await SplashScreen.preventAutoHideAsync()
-      await Font.loadAsync({
-         'CircularStd': require('./assets/fonts/CircularStd-Book.ttf'),
-         'CircularStdBold': require('./assets/fonts/CircularStd-Bold.ttf'),
-         'CircularStdMedium': require('./assets/fonts/CircularStd-Medium.ttf'),
-         'LineAwesome': require('./assets/fonts/line-awesome.ttf')
-      })
-      if (Font.isLoaded('CircularStd') && Font.isLoaded('CircularStdBold')  && Font.isLoaded('CircularStdMedium')) {
-        setResourcesLoaded(true)
-        await SplashScreen.hideAsync()
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    loadResources()
-    moment().locale('pt-br')
-  }, [])
-
-  if (!resourcesLoaded) return <AppLoading />
-  else {
+  if (!isReady) {
     return (
-      <Provider store={store}>
-        <Router></Router>
-      </Provider>
-    )
+      <AppLoading
+        startAsync={() => _loadAssets()}
+        onFinish={() => setReady(true)}
+        onError={e => _handleLoadingError(e)}
+      />
+    );
   }
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontFamily: 'circularstdbold' }}>Testing Error on Font 1</Text>
+      <Text style={{ fontFamily: 'circularstdmedium' }}>Testing Error on Font 2</Text>
+      <Text style={{ fontFamily: 'circularstd' }}>Testing Error on Font 3</Text>
+      <Icon name="file-invoice-dollar-solid" size={56} color="red" />
+    </View>
+  );
 }
+// font loading function
+const _loadAssets = async () => {
+  await Font.loadAsync({
+    'circularstd': require('./assets/fonts/CircularStd-Book.ttf'),
+    'circularstdbold': require('./assets/fonts/CircularStd-Bold.ttf'),
+    'circularstdmedium': require('./assets/fonts/CircularStd-Medium.ttf'),
+    'lineawesome': require('./assets/fonts/line-awesome.ttf')
+  });
+}
+
+const _handleLoadingError = (error: any) => {
+  console.log(error);
+};

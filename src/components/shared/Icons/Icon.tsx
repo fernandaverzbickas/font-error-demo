@@ -1,7 +1,6 @@
 import React from 'react'
 import { createIconSet } from '@expo/vector-icons'
 import { icons } from '../LineAwesomeIcons'
-import { Colors } from '../../../styles'
 
 export interface Props {
   name?: string,
@@ -9,13 +8,13 @@ export interface Props {
   color?: string
 }
 
-  
+
 interface GlyphObject {
   [key: string]: number
 }
 
 const Icon: React.FC<Props> = (props) => {
-  let glyphs : GlyphObject = {}
+  let glyphs: GlyphObject = {}
   const roughGlyphs = icons.icons.map(icon => {
     return {
       name: icon.properties.name,
@@ -26,9 +25,9 @@ const Icon: React.FC<Props> = (props) => {
   roughGlyphs.forEach(icon => glyphs[icon.name] = icon.code)
 
   const glyphMap = glyphs
-  const CustomIcon = createIconSet(glyphMap, 'LineAwesome', 'line-awesome.ttf');
+  const CustomIcon = createIconSet(glyphMap, 'lineawesome', 'line-awesome.ttf');
   return (
-    <CustomIcon name={props.name || 'envelope'} size={props.size || 24} color={props.color || Colors.BTBLUE} />
+    <CustomIcon name={props.name || 'envelope'} size={props.size || 24} color={props.color || 'blue'} />
   )
 }
 

@@ -1,21 +1,16 @@
 {
-  "name": "app-organizador",
-  "displayName": "app-organizador",
+  "name": "font-demo",
+  "displayName": "font-demo",
   "expo": {
-    "name": "Blueticket Organizador",
-    "slug": "app-organizador",
+    "name": "FontDemo",
+    "slug": "font-error-demo",
     "privacy": "unlisted",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon":"./assets/appStoreIcon.png",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "icon": "./assets/appStoreIcon.png",
+    "platforms": ["ios", "android"],
+    "assetBundlePatterns": ["**/*"],
+    "scheme": "fontdemo",
     "splash": {
       "image": "./assets/images/blueticket-splash-screen.png",
       "backgroundColor": "#0067AF",
@@ -23,7 +18,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "br.com.blueticket.organizador"
+      "bundleIdentifier": "br.com.font.error.demo"
+    },
+    "android": {
+      "package": "br.com.font.error.demo"
     }
   }
 }

@@ -6,7 +6,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <UMReactNativeAdapter/UMNativeModulesProxy.h>
 #import <UMReactNativeAdapter/UMModuleRegistryAdapter.h>
+#import <UMCore/UMModuleRegistry.h>
 #import <React/RCTBridgeDelegate.h>
 #import <UMCore/UMAppDelegateWrapper.h>
 
